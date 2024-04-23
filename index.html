@@ -9,33 +9,51 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
+            background: linear-gradient(135deg, #FFA500, #FFD700); /* Gradient from orange to gold */
         }
         .container {
-            max-width: 600px;
-            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             padding: 20px;
-            background-color: #fff;
+            box-sizing: border-box;
+        }
+        .invitation {
+            width: 90%;
+            max-width: 600px;
+            background-color: #FFF8DC; /* Light goldenrod yellow */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            padding: 20px;
         }
         h2, p {
             text-align: center;
-        }
-        .invitation {
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Add margin for spacing */
         }
         .invitation p {
-            font-size: 18px;
+            font-size: 16px; /* Adjust font size */
+            line-height: 1.6; /* Adjust line height */
+            margin-bottom: 10px; /* Add margin for spacing */
         }
         .invitation p.guest-name {
             font-weight: bold;
         }
+        .invitation p.event-name {
+            font-weight: bold;
+            font-size: 18px; /* Increase font size */
+        }
+        .invitation p.timer {
+            font-size: 20px; /* Adjust font size */
+            font-weight: bold;
+        }
+        .invitation p.map-link {
+            text-align: center;
+        }
         .invitation p.final-message {
             margin-top: 20px;
             font-style: italic;
-            font-size: 16px;
+            font-size: 14px; /* Adjust font size */
         }
         .footer {
             text-align: center;
@@ -48,19 +66,19 @@
 
 <div class="container">
     <div class="invitation">
-        <h2>Sri Sathya Sai Centre 42nd Anniversary Celebration</h2>
+        <h2>Invitation</h2>
         <p>Dear <span id="anniversary-guest-name" class="guest-name">Guest</span>,</p>
-        <p>We cordially invite you to join us in celebrating the 42nd Anniversary of Sri Sathya Sai Centre. This auspicious occasion is an opportunity for us to come together as a community and reflect on the teachings of Sri Sathya Sai Baba.
-        </p>
-        <p>Date: January 29, 2081<br>
+        <p>Loving Sai Ram</p>
+        <p>We cordially invite you to join us in celebrating the</p>
+        <p class="event-name">42nd anniversary of<br>Sri Sathya Sai Centre Narayangarh</p>
+        <p>Date: 13th May 2024<br>
         Time: 8:00 AM to 10:00 AM</p>
-        <p>Please grace us with your presence as we honor the legacy of love, compassion, and service that Sri Sathya Sai Baba has bestowed upon us. Your participation will make this event truly special.
-        </p>
+        <p class="timer" id="timer">Time remaining: </p>
+        <p class="map-link"><a href="https://maps.app.goo.gl/pw4tmLPa6WuXowae8" target="_blank">Click here for location on Google Maps</a></p>
+        <p>This auspicious occasion is an opportunity for us to come together and celebrate the love Bhagawan Sri Sathya Sai Baba has bestowed upon us.</p>
+        <p>There will be various cultural programs by balvikas children and youth.</p>
+        <p>Your participation will make this event truly special.</p>
         <p class="final-message">We look forward to celebrating with you!</p>
-    </div>
-    <div class="footer">
-        <p>With warm regards,</p>
-        <p>Sairam</p>
     </div>
 </div>
 
@@ -71,6 +89,35 @@
     if (anniversaryGuestName) {
         document.getElementById("anniversary-guest-name").innerText = anniversaryGuestName;
     }
+
+    // Set the date and time of the event (13th May 2024, 8:00 AM)
+    var eventDate = new Date("2024-05-13T08:00:00").getTime();
+
+    // Update the countdown every second
+    var x = setInterval(function() {
+
+        // Get the current date and time
+        var now = new Date().getTime();
+
+        // Calculate the time remaining until the event
+        var distance = eventDate - now;
+
+        // Calculate days, hours, minutes, and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the time remaining
+        document.getElementById("timer").innerHTML = "Time remaining: " + days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+        // If the event has passed, display a message
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "EXPIRED";
+        }
+    }, 1000);
 </script>
 
 </body>
