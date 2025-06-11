@@ -59,11 +59,19 @@
             font-size: 2.5em;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        .quote {
+        /* Style for the 'Thought of the Day' link */
+        .thought-link { /* Changed from .quote to .thought-link */
             font-style: italic;
             color: #555;
             margin-bottom: 30px;
+            padding: 0 20px;
+            cursor: pointer; /* Indicate it's clickable */
+            text-decoration: underline; /* Make it look like a link */
         }
+        .thought-link:hover {
+            color: #7b1fa2; /* Highlight on hover */
+        }
+
         .wing-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -128,7 +136,9 @@
     </div>
 
     <h1>Welcome to Sai Youth Narayangarh</h1>
-    <div class="quote">"Love All, Serve All. Help Ever, Hurt Never."</div>
+    <div class="thought-link">
+        <a href="thought of the day.html">Click for Today's Thought</a>
+    </div>
     <div class="wing-container">
         <a class="wing" href="education.html">Education</a>
         <a class="wing" href="ladies.html">Ladies</a>
@@ -145,16 +155,13 @@
 
     <script>
         const introImageContainer = document.getElementById('introImageContainer');
-        // No need to reference mainContent as a separate element since it's the body itself.
 
         // Immediately hide all body content that is not the intro image container
-        // This is a simple way to ensure the main content is not visible during the splash.
-        // We'll reset it after the splash.
         const bodyChildren = document.body.children;
         for (let i = 0; i < bodyChildren.length; i++) {
             if (bodyChildren[i].id !== 'introImageContainer') {
                 bodyChildren[i].style.visibility = 'hidden';
-                bodyChildren[i].style.opacity = '0'; // For smooth fade in later
+                bodyChildren[i].style.opacity = '0';
                 bodyChildren[i].style.transition = 'opacity 1s ease-in';
             }
         }
@@ -164,22 +171,22 @@
 
         // Set timeout to start fading out the intro image container
         setTimeout(() => {
-            introImageContainer.classList.add('fade-out'); // Start fade out
+            introImageContainer.classList.add('fade-out');
 
             // Listen for the end of the fade-out transition
             introImageContainer.addEventListener('transitionend', () => {
-                introImageContainer.classList.add('hidden'); // Completely hide the splash container
+                introImageContainer.classList.add('hidden');
 
                 // Reveal main content
                 for (let i = 0; i < bodyChildren.length; i++) {
                     if (bodyChildren[i].id !== 'introImageContainer') {
                         bodyChildren[i].style.visibility = 'visible';
-                        bodyChildren[i].style.opacity = '1'; // Fade in
+                        bodyChildren[i].style.opacity = '1';
                     }
                 }
-                document.body.style.overflow = ''; // Restore scrollbar
-            }, { once: true }); // Ensure this listener runs only once
-        }, 5000); // 5000 milliseconds = 5 seconds
+                document.body.style.overflow = '';
+            }, { once: true });
+        }, 5000);
     </script>
 </body>
 </html>
