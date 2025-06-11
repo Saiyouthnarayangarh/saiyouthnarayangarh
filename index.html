@@ -59,17 +59,23 @@
             font-size: 2.5em;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        /* Style for the 'Thought of the Day' link */
-        .thought-link { /* Changed from .quote to .thought-link */
+
+        /* Style for the 'Thought of the day' link */
+        .thought-link {
             font-style: italic;
             color: #555;
             margin-bottom: 30px;
             padding: 0 20px;
-            cursor: pointer; /* Indicate it's clickable */
-            text-decoration: underline; /* Make it look like a link */
         }
-        .thought-link:hover {
-            color: #7b1fa2; /* Highlight on hover */
+        .thought-link a {
+            color: #7b1fa2; /* Make the link text visible and distinct */
+            text-decoration: underline; /* Standard link underline */
+            font-weight: bold; /* Make it stand out */
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .thought-link a:hover {
+            color: #4e342e; /* Change color on hover */
         }
 
         .wing-container {
@@ -137,7 +143,7 @@
 
     <h1>Welcome to Sai Youth Narayangarh</h1>
     <div class="thought-link">
-        <a href="thought of the day.html">Click for Today's Thought</a>
+        <a href="ThoughtOfTheDay.html">Thought of the day</a>
     </div>
     <div class="wing-container">
         <a class="wing" href="education.html">Education</a>
@@ -156,7 +162,7 @@
     <script>
         const introImageContainer = document.getElementById('introImageContainer');
 
-        // Immediately hide all body content that is not the intro image container
+        // --- Splash screen and content visibility logic ---
         const bodyChildren = document.body.children;
         for (let i = 0; i < bodyChildren.length; i++) {
             if (bodyChildren[i].id !== 'introImageContainer') {
@@ -166,14 +172,11 @@
             }
         }
 
-        // Hide scrollbar during intro
         document.body.style.overflow = 'hidden';
 
-        // Set timeout to start fading out the intro image container
         setTimeout(() => {
             introImageContainer.classList.add('fade-out');
 
-            // Listen for the end of the fade-out transition
             introImageContainer.addEventListener('transitionend', () => {
                 introImageContainer.classList.add('hidden');
 
