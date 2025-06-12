@@ -13,12 +13,14 @@
         /* Basic styling for the body to center content */
         body {
             display: flex;
+            flex-direction: column; /* Changed to column to stack image and link */
             justify-content: center; /* Horizontally center content */
             align-items: center;     /* Vertically center content */
             min-height: 100vh;       /* Make body take full viewport height */
             margin: 0;               /* Remove default body margin */
             background-color: #f0f0f0; /* Light background for contrast */
             font-family: sans-serif; /* A simple, readable font */
+            padding-bottom: 20px; /* Add some padding at the bottom */
         }
 
         /* Styling for the daily image */
@@ -47,6 +49,29 @@
             font-style: italic;
         }
 
+        /* Style for the back-to-main link */
+        .back-to-main-link {
+            margin-top: 30px; /* Space above the link */
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .back-to-main-link a {
+            color: #7b1fa2; /* A color that fits your existing scheme */
+            text-decoration: none; /* No underline by default */
+            padding: 8px 15px;
+            border: 1px solid #7b1fa2; /* A subtle border */
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .back-to-main-link a:hover {
+            background-color: #7b1fa2;
+            color: white;
+            border-color: #7b1fa2;
+        }
+
+
         /* Media query for very small screens (e.g., old phones) */
         @media (max-width: 480px) {
             #dailyImage {
@@ -59,6 +84,10 @@
 <body>
 
     <img id="dailyImage" src="" alt="Loading image...">
+
+    <div class="back-to-main-link">
+        <a href="index.html">Back to Main Page</a>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -79,23 +108,23 @@
             // Check if the current month is June
             if (currentMonth === 5) { // If it's June
                 // Ensure the day is within the valid range for June (1 to 30)
-                if (currentDay >= 1 && currentDay <= 30) {
+                if (currentDay >= 1 && currentDay <= 30) { //
                     // Construct the filename as "June 1.png", "June 10.png", etc.
-                    imagePath = `${basePath}June/June ${currentDay}${imageExtension}`;
+                    imagePath = `${basePath}June/June ${currentDay}${imageExtension}`; //
                 } else {
                     // If it's June but the day is out of range (e.g., June 31st)
-                    console.warn(`Today's date (${currentDay}) is outside the expected range for June (1-30).`);
-                    dailyImage.alt = "Image not available for this specific day in June.";
+                    console.warn(`Today's date (${currentDay}) is outside the expected range for June (1-30).`); //
+                    dailyImage.alt = "Image not available for this specific day in June."; //
                 }
             } else {
                 // If it's not June
-                console.warn("It's not June. Image display is configured only for June.");
-                dailyImage.alt = "This page is designed to display images only for June.";
+                console.warn("It's not June. Image display is configured only for June."); //
+                dailyImage.alt = "This page is designed to display images only for June."; //
             }
 
             // Set the image source if a valid path was determined
-            if (imagePath) {
-                dailyImage.src = imagePath;
+            if (imagePath) { //
+                dailyImage.src = imagePath; //
             } else {
                 // If no image path was set (e.g., not June, or day out of range)
                 // This ensures the alt text is shown clearly.
