@@ -1,195 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  integrity="sha512-pap0k6gKznCq5ZxzZWZ39D+7HuNQaE+KP3zM8IsbAYqTQlQJzDDDRRU8x0U3pJYZFwVXOCu5+0G9sPsySg+zIA=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Main Page</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pap0k6gKznCq5ZxzZWZ39D+7HuNQaE+KP3zM8IsbAYqTQlQJzDDDRRU8x0U3pJYZFwVXOCu5+0G9sPsySg+zIA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: linear-gradient(rgba(255,249,230,0.95), rgba(255,249,230,0.95)), url('assets/img/portfolio/bg.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
 
-    <style>
-        /* Base styles for body - apply your original background here */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Your original background */
-            background-image: linear-gradient(rgba(255,249,230,0.95), rgba(255,249,230,0.95)), url('assets/img/portfolio/bg.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
+    #introImageContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      background-color: white;
+      transition: opacity 0.5s ease-out;
+    }
 
-        /* NEW CSS for the full-screen introductory image container */
-        #introImageContainer {
-            position: fixed; /* Fixed position to cover the viewport */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex; /* Use flexbox to center the image */
-            align-items: center;
-            justify-content: center;
-            z-index: 1000; /* Ensure it's on top of everything */
-            background-color: white; /* Solid white background for the splash screen */
-            transition: opacity 0.5s ease-out; /* Smooth fade-out */
-        }
+    #introImage {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
 
-        #introImage {
-            max-width: 100%; /* Ensure image doesn't overflow container */
-            max-height: 100%;
-            object-fit: contain; /* 'contain' fits the image within the container without cropping */
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
+    /* Perfect Instagram Story Ring */
+    .story-ring-wrapper {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
 
-        /* Styles for your existing content */
-        h1 {
-            margin-top: 20px;
-            color: #7b1fa2;
-            font-size: 2.5em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
+    .story-ring {
+      width: 162px;
+      height: 162px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        #f09433,
+        #e6683c,
+        #dc2743,
+        #cc2366,
+        #bc1888,
+        #f09433
+      );
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
 
-        /* Style for the 'Thought of the day' link */
-        .thought-link {
-            font-style: italic;
-            color: #555;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-        .thought-link a {
-            color: #7b1fa2; /* Make the link text visible and distinct */
-            text-decoration: underline; /* Standard link underline */
-            font-weight: bold; /* Make it stand out */
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .thought-link a:hover {
-            color: #4e342e; /* Change color on hover */
-        }
+    .story-ring:hover {
+      transform: scale(1.05);
+    }
 
-        .wing-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 40px;
-            width: 100%;
-            max-width: 800px;
-        }
-        .wing {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            font-size: 18px;
-            font-weight: bold;
-            color: #4e342e;
-            transition: 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .wing:hover {
-            background-color: #f3e5f5;
-            transform: translateY(-5px);
-        }
-        .social-icons {
-            margin-top: 40px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .social-icons a {
-            color: #7b1fa2;
-            text-decoration: none;
-            background-color: rgba(255,255,255,0.9);
-            padding: 10px 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .social-icons a:hover {
-            background-color: #e1bee7;
-        }
+    .story-ring img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: white;
+      padding: 4px;
+    }
 
-        /* Utility classes */
-        .hidden {
-            display: none !important;
-        }
-        .fade-out {
-            opacity: 0;
-        }
-    </style>
+    h1 {
+      margin-top: 10px;
+      color: #7b1fa2;
+      font-size: 2.5em;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .thought-link {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+
+    .thought-link a {
+      color: #7b1fa2;
+      text-decoration: underline;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .thought-link a:hover {
+      color: #4e342e;
+    }
+
+    .wing-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .wing {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-size: 18px;
+      font-weight: bold;
+      color: #4e342e;
+      transition: 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .wing:hover {
+      background-color: #f3e5f5;
+      transform: translateY(-5px);
+    }
+
+    .social-icons {
+      margin-top: 40px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .social-icons a {
+      color: #7b1fa2;
+      text-decoration: none;
+      background-color: rgba(255,255,255,0.9);
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .social-icons a:hover {
+      background-color: #e1bee7;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .fade-out {
+      opacity: 0;
+    }
+  </style>
 </head>
 <body>
 
-    <div id="introImageContainer">
-        <img id="introImage" src="assets/img/portfolio/Slide 6.jpg" alt="Welcome Image">
-    </div>
+  <div id="introImageContainer">
+    <img id="introImage" src="assets/img/portfolio/Slide 6.jpg" alt="Welcome Image" />
+  </div>
 
-    <h1>Welcome to Sai Youth Narayangarh</h1>
-    <div class="thought-link">
-        <a href="ThoughtOfTheDay.html">Thought of the day</a>
-    </div>
-    <div class="wing-container">
-        <a class="wing" href="education.html">Education</a>
-        <a class="wing" href="ladies.html">Ladies</a>
-        <a class="wing" href="medical.html">Medical</a>
-        <a class="wing" href="youth.html">Youth</a>
-    </div>
-    <div class="social-icons">
-        <a href="https://www.instagram.com/sai_youth_narayangarh/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://www.facebook.com/ssscnarayangarh" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-        <a href="https://www.youtube.com/@SaiyouthNarayangarh" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.instagram.com/direct/inbox/?thread_key=9468281653191986" target="_blank"><i class="fab fa-instagram"></i> IG Channel</a>
-        <a href="https://www.facebook.com/groups/saiyouthnarayangarh" target="_blank"><i class="fab fa-facebook"></i> FB Group</a>
-    </div>
+  <!-- Instagram Story Ring (100% accurate) -->
+  <div class="story-ring-wrapper">
+    <a href="https://www.instagram.com/stories/highlights/18178347982074610/" target="_blank" class="story-ring">
+      <img src="assets/pp.png" alt="Instagram Story" />
+    </a>
+  </div>
 
-    <script>
-        const introImageContainer = document.getElementById('introImageContainer');
+  <h1>Welcome to Sai Youth Narayangarh</h1>
 
-        // --- Splash screen and content visibility logic ---
-        const bodyChildren = document.body.children;
+  <div class="thought-link">
+    <a href="ThoughtOfTheDay.html">Thought of the day</a>
+  </div>
+
+  <div class="wing-container">
+    <a class="wing" href="education.html">Education</a>
+    <a class="wing" href="ladies.html">Ladies</a>
+    <a class="wing" href="medical.html">Medical</a>
+    <a class="wing" href="youth.html">Youth</a>
+  </div>
+
+  <div class="social-icons">
+    <a href="https://www.instagram.com/sai_youth_narayangarh/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.facebook.com/ssscnarayangarh" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+    <a href="https://www.youtube.com/@SaiyouthNarayangarh" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+    <a href="https://www.instagram.com/direct/inbox/?thread_key=9468281653191986" target="_blank"><i class="fab fa-instagram"></i> IG Channel</a>
+    <a href="https://www.facebook.com/groups/saiyouthnarayangarh" target="_blank"><i class="fab fa-facebook"></i> FB Group</a>
+  </div>
+
+  <script>
+    const introImageContainer = document.getElementById('introImageContainer');
+    const bodyChildren = document.body.children;
+    for (let i = 0; i < bodyChildren.length; i++) {
+      if (bodyChildren[i].id !== 'introImageContainer') {
+        bodyChildren[i].style.visibility = 'hidden';
+        bodyChildren[i].style.opacity = '0';
+        bodyChildren[i].style.transition = 'opacity 1s ease-in';
+      }
+    }
+
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      introImageContainer.classList.add('fade-out');
+      introImageContainer.addEventListener('transitionend', () => {
+        introImageContainer.classList.add('hidden');
         for (let i = 0; i < bodyChildren.length; i++) {
-            if (bodyChildren[i].id !== 'introImageContainer') {
-                bodyChildren[i].style.visibility = 'hidden';
-                bodyChildren[i].style.opacity = '0';
-                bodyChildren[i].style.transition = 'opacity 1s ease-in';
-            }
+          if (bodyChildren[i].id !== 'introImageContainer') {
+            bodyChildren[i].style.visibility = 'visible';
+            bodyChildren[i].style.opacity = '1';
+          }
         }
-
-        document.body.style.overflow = 'hidden';
-
-        setTimeout(() => {
-            introImageContainer.classList.add('fade-out');
-
-            introImageContainer.addEventListener('transitionend', () => {
-                introImageContainer.classList.add('hidden');
-
-                // Reveal main content
-                for (let i = 0; i < bodyChildren.length; i++) {
-                    if (bodyChildren[i].id !== 'introImageContainer') {
-                        bodyChildren[i].style.visibility = 'visible';
-                        bodyChildren[i].style.opacity = '1';
-                    }
-                }
-                document.body.style.overflow = '';
-            }, { once: true });
-        }, 5000);
-    </script>
+        document.body.style.overflow = '';
+      }, { once: true });
+    }, 5000);
+  </script>
 </body>
 </html>
