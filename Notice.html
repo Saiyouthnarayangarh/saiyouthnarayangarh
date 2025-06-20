@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Centered Message Popup</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f2f5;
+    }
+
+    .chat-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 420px;
+      max-height: 80vh;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    .chat-header {
+      background-color: #0084ff;
+      color: white;
+      padding: 14px 16px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-body {
+      padding: 16px;
+      font-size: 14px;
+      color: #333;
+      overflow-y: auto;
+    }
+
+    .chat-footer {
+      padding: 12px 16px;
+      text-align: right;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-footer button {
+      background-color: #0084ff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .chat-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-body::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-popup">
+  <div class="chat-header">
+    साईराम सूचना ✨
+    <button class="close-btn" onclick="parent.closeIntro()">×</button>
+  </div>
+  <div class="chat-body">
+    <p>
+      साईराम<br><br>
+      भगवान् बाबाको शताब्दी कार्यक्रम अन्तर्गत नेपाल भरिका साधकहरुले गर्दै आएको १०० दिनको साधनाको समापन समारोह कार्यक्रम युवाहरूको सक्रिय सहभागीतामा गुरुपूर्णिमाको अवसर पारेर वेदव्यासको जन्मस्थल दमौलीमा महारुद्र अभिषेकम कार्यक्रम हुने भएको जानकारी गराउँदछू।<br><br>
+      श्री सत्य साई प्रदेश समिति ४ को आतिथ्यमा तथा कार्यक्रम संयोजन राष्ट्रिय युवा संयोजकले गर्ने उक्त कार्यक्रममा आ आफ्नो केन्द्रबाट सक्रिय सहभागीताको लागी हार्दिक अनुरोध गर्दछु।<br><br>
+      📞 सम्पर्क : श्री सार्थक खनाल, संयोजक, वेद प्रवर्द्धन समिति<br>
+      मो. ९८६२०३८४८९<br><br>
+      जय साईराम!<br><br>
+      समस्ता लोका: सुखिनो भवन्तु।<br><br>
+      स्वामीको कृपा हामी सबैमा सदा सर्वदा भई रहोस् ।<br><br>
+      श्री सत्य साई प्रदेश समिति ३ ख
+    </p>
+  </div>
+  <div class="chat-footer">
+    <button onclick="parent.closeIntro()">जय साईराम</button>
+  </div>
+</div>
+
+</body>
+</html>
