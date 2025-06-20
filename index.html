@@ -40,15 +40,12 @@
       transition: opacity 0.5s ease-out;
     }
 
-    #introImage {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
-    /* Perfect Instagram Story Ring */
     .story-ring-wrapper {
       margin-top: 30px;
       margin-bottom: 10px;
@@ -58,15 +55,7 @@
       width: 162px;
       height: 162px;
       border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        #f09433,
-        #e6683c,
-        #dc2743,
-        #cc2366,
-        #bc1888,
-        #f09433
-      );
+      background: conic-gradient(from 0deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #f09433);
       padding: 4px;
       display: flex;
       align-items: center;
@@ -177,11 +166,12 @@
 </head>
 <body>
 
+  <!-- Intro iframe (Notice.html) -->
   <div id="introImageContainer">
-    <img id="introImage" src="assets/img/portfolio/Slide 6.jpg" alt="Welcome Image" />
+    <iframe id="noticeFrame" src="Notice.html"></iframe>
   </div>
 
-  <!-- Instagram Story Ring (100% accurate) -->
+  <!-- Instagram Ring -->
   <div class="story-ring-wrapper">
     <a href="https://www.instagram.com/stories/highlights/18178347982074610/" target="_blank" class="story-ring">
       <img src="assets/pp.png" alt="Instagram Story" />
@@ -209,32 +199,43 @@
     <a href="https://www.facebook.com/groups/saiyouthnarayangarh" target="_blank"><i class="fab fa-facebook"></i> FB Group</a>
   </div>
 
-  <script>
-    const introImageContainer = document.getElementById('introImageContainer');
-    const bodyChildren = document.body.children;
-    for (let i = 0; i < bodyChildren.length; i++) {
-      if (bodyChildren[i].id !== 'introImageContainer') {
-        bodyChildren[i].style.visibility = 'hidden';
-        bodyChildren[i].style.opacity = '0';
-        bodyChildren[i].style.transition = 'opacity 1s ease-in';
-      }
+<script>
+  const introImageContainer = document.getElementById('introImageContainer');
+  const bodyChildren = document.body.children;
+
+  // Hide main content
+  for (let i = 0; i < bodyChildren.length; i++) {
+    if (bodyChildren[i].id !== 'introImageContainer') {
+      bodyChildren[i].style.visibility = 'hidden';
+      bodyChildren[i].style.opacity = '0';
+      bodyChildren[i].style.transition = 'opacity 1s ease-in';
     }
+  }
 
-    document.body.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
 
-    setTimeout(() => {
-      introImageContainer.classList.add('fade-out');
-      introImageContainer.addEventListener('transitionend', () => {
-        introImageContainer.classList.add('hidden');
-        for (let i = 0; i < bodyChildren.length; i++) {
-          if (bodyChildren[i].id !== 'introImageContainer') {
-            bodyChildren[i].style.visibility = 'visible';
-            bodyChildren[i].style.opacity = '1';
-          }
+  function closeIntro() {
+    introImageContainer.classList.add('fade-out');
+    introImageContainer.addEventListener('transitionend', () => {
+      introImageContainer.classList.add('hidden');
+      for (let i = 0; i < bodyChildren.length; i++) {
+        if (bodyChildren[i].id !== 'introImageContainer') {
+          bodyChildren[i].style.visibility = 'visible';
+          bodyChildren[i].style.opacity = '1';
         }
-        document.body.style.overflow = '';
-      }, { once: true });
-    }, 5000);
-  </script>
+      }
+      document.body.style.overflow = '';
+    }, { once: true });
+  }
+
+  // Make this function accessible to iframe
+  window.closeIntro = closeIntro;
+
+  // Auto-close after 30 sec
+  setTimeout(closeIntro, 30000);
+</script>
+
+
+
 </body>
 </html>
