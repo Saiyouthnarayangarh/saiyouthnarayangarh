@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Image Display</title>
+
+  <meta property="og:title" content="Daily Image Display - Thought of the Day" />
+  <meta property="og:description" content="A daily image display featuring inspiring thoughts and visuals from SSSCNARAYANGARH.ORG.NP." />
+  <meta property="og:image" content="https://ssscnarayangart.org.np/assets/img/portfolio/Thumbnail.png" />
+  <meta property="og:url" content="https://ssscnarayangart.org.np/ThoughtForTheDay.html" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+      padding-bottom: 20px;
+    }
+
+    #dailyImage {
+      display: block;
+      max-width: 61%;
+      height: auto;
+      margin: 20px auto;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease-in-out;
+    }
+
+    #dailyImage[alt]:not([src]) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 200px;
+      width: 300px;
+      text-align: center;
+      color: #555;
+      background-color: #eee;
+      border: 2px dashed #aaa;
+      font-style: italic;
+    }
+
+    .back-to-main-link {
+      margin-top: 30px;
+      font-size: 1em;
+      text-align: center;
+    }
+
+    .back-to-main-link a {
+      color: #7b1fa2;
+      text-decoration: none;
+      padding: 8px 15px;
+      border: 1px solid #7b1fa2;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .back-to-main-link a:hover {
+      background-color: #7b1fa2;
+      color: white;
+      border-color: #7b1fa2;
+    }
+
+    @media (max-width: 480px) {
+      #dailyImage {
+        max-width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img id="dailyImage" src="" alt="Loading image..." />
+
+  <div class="back-to-main-link">
+    <a href="index.html">Back to Main Page</a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const dailyImage = document.getElementById("dailyImage");
+
+      const today = new Date();
+      const currentMonthIndex = today.getMonth(); // 0 = Jan, 11 = Dec
+      const currentDay = today.getDate();
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      const currentMonthName = monthNames[currentMonthIndex];
+      const basePath = "assets/img/tod/";
+      const imageExtension = ".png";
+
+      const imageFileName = `${currentMonthName} ${currentDay}${imageExtension}`;
+      const imagePath = `${basePath}${imageFileName}`;
+
+      dailyImage.src = imagePath;
+
+      dailyImage.onerror = function () {
+        dailyImage.alt = `No image found for ${currentMonthName} ${currentDay}.`;
+        dailyImage.src = "";
+      };
+    });
+  </script>
+</body>
+</html>
