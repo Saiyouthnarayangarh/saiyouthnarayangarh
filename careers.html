@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e6f9f0, #fff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 650px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: #2e7d32;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .intro {
+      font-size: 15px;
+      color: #333;
+      background: rgba(255, 255, 255, 0.5);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #2e7d32;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+      transition: box-shadow 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 5px #81c784;
+    }
+
+    button {
+      margin-top: 30px;
+      width: 100%;
+      padding: 14px;
+      background-color: #388e3c;
+      color: white;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2e7d32;
+    }
+
+    .success {
+      margin-top: 30px;
+      color: #2e7d32;
+      text-align: center;
+      font-size: 18px;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 30px;
+      border-radius: 15px;
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .success::before {
+      content: "🙏";
+      font-size: 32px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- FORM SECTION -->
+    <div id="formSection">
+      <h2>Call for volunteers</h2>
+
+      <div class="intro">
+        Sai Youth Narayangarh is looking for volunteers who are eager to use their talent to serve for Bhagwan. This is a chance to serve Bhagwan and reach thousands of devotees every day through our social media handle. <br><br>
+        As a volunteer, you'll have creative freedom, learn from each other, and contribute to meaningful seva that brings you closer to devotion.
+      </div>
+
+      <form id="volunteerForm">
+        <label for="name">Full Name</label>
+        <input type="text" name="name" id="name" required />
+
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" required />
+
+        <label for="whatsapp">WhatsApp Number</label>
+        <input type="tel" name="whatsapp" id="whatsapp" required />
+
+        <label for="portfolio">Portfolio Link</label>
+        <input type="url" name="portfolio" id="portfolio" placeholder="https://..." required />
+
+        <button type="submit">Submit Application</button>
+      </form>
+    </div>
+
+    <!-- SUCCESS MESSAGE -->
+    <div class="success" id="successMessage">
+      <strong>Sairam!</strong> <br>Your application has been successfully sent.<br />
+      A concerned Sairam will contact you soon.<br />
+      Thank you for your loving intent to serve Bhagwan.
+    </div>
+  </div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwPcSzDwH6kjtWfLdSwZJ-m4uHb2gkyfbsb7D5JwpOaeESWj5J1ZflR6DEVFjnaGvYjPg/exec";
+
+    document.getElementById("volunteerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const form = document.getElementById("volunteerForm");
+      const formData = new FormData(form);
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: formData
+      })
+        .then(response => response.text())
+        .then(result => {
+          document.getElementById("formSection").style.display = "none";
+          document.getElementById("successMessage").style.display = "block";
+          form.reset();
+        })
+        .catch(error => {
+          console.error("Error!", error.message);
+          document.getElementById("successMessage").innerText =
+            "❌ Something went wrong. Please try again.";
+        });
+    });
+  </script>
+</body>
+</html>
