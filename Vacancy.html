@@ -81,20 +81,12 @@
   document.getElementById("volunteerForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const form = e.target;
-    const data = {
-      name: form.name.value,
-      address: form.address.value,
-      whatsapp: form.whatsapp.value,
-      portfolio: form.portfolio.value
-    };
+    const form = document.getElementById("volunteerForm");
+    const formData = new FormData(form);
 
     fetch(scriptURL, {
       method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
+      body: formData
     })
     .then(response => response.text())
     .then(result => {
@@ -102,6 +94,7 @@
       form.reset();
     })
     .catch(error => {
+      console.error("Error!", error.message);
       document.getElementById("successMessage").innerText = "❌ Something went wrong. Please try again.";
     });
   });
