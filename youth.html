@@ -2,39 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Youth Wing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Youth</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #e3f2fd;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      color: #0277bd;
-      text-align: center;
-    }
-    p {
-      font-size: 18px;
-      color: #333;
-      max-width: 800px;
-      margin: auto;
-    }
-    a {
-      display: block;
-      text-align: center;
-      margin-top: 30px;
+    .news-item {
+      display: flex;
+      align-items: flex-start;
       text-decoration: none;
-      color: #0277bd;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .news-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.12);
+    }
+
+    .news-list {
+      max-width: 900px;
+      margin: 40px auto;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .news-img {
+      width: 160px;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 16px;
+      flex: 1;
+    }
+
+    .news-title {
+      margin: 0 0 10px;
+      color: #1a1a1a;
+      font-size: 1.25rem;
+    }
+
+    .news-description {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>Youth Wing</h1>
-  <p>
-    The Youth Wing encourages young people to engage in service activities, spiritual growth, and personal development. It fosters leadership, unity, and love for Swami through dynamic and value-based programs.
-  </p>
-  <a href="main.html">← Back to Main Page</a>
+
+<div class="news-list">
+  <a href="Devghat-sewa" target="_blank" class="news-item">
+    <img src="assets/img/portfolio/final.png" alt="Devghat-sewa" class="news-img" />
+    <div class="news-content">
+      <h3 class="news-title">Devghat-sewa</h3>
+      <p class="news-description">Devghat Dham Sewa Click to read full summary of Sewa highlights.</p>
+    </div>
+  </a>
+</div>
+
 </body>
 </html>
