@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Youth</title>
+  <style>
+    .news-item {
+      display: flex;
+      align-items: flex-start;
+      text-decoration: none;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .news-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.12);
+    }
+
+    .news-list {
+      max-width: 900px;
+      margin: 40px auto;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .news-img {
+      width: 160px;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 16px;
+      flex: 1;
+    }
+
+    .news-title {
+      margin: 0 0 10px;
+      color: #1a1a1a;
+      font-size: 1.25rem;
+    }
+
+    .news-description {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<div class="news-list">
+  <a href="Narayan-Sewa" target="_blank" class="news-item">
+    <img src="/assets/img/portfolio/AnnaSeva.png" alt="Narayan-Sewa" class="news-img" />
+    <div class="news-content">
+      <h3 class="news-title">Narayan-Sewa</h3>
+      <p class="news-description">Narayan-Sewa by Sai Youth of state 3B Click to read full summary of Sewa highlights.</p>
+    </div>
+  </a>
+
+  <a href="Devghat-sewa" target="_blank" class="news-item">
+    <img src="/assets/img/portfolio/DevghatSewa.png" alt="Devghat-sewa" class="news-img" />
+    <div class="news-content">
+      <h3 class="news-title">Devghat-sewa</h3>
+      <p class="news-description">Devghat Dham Sewa by SYN Click to read full summary of Sewa highlights.</p>
+    </div>
+  </a>
+</div>
+
+</body>
+</html>
