@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px; /* Add some padding for smaller screens */
+            box-sizing: border-box;
+        }
+        .feedback-container {
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            box-sizing: border-box;
+        }
+        .feedback-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .response-message {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .response-message.success {
+            color: green;
+        }
+        .response-message.error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <h2>Share Your Feedback</h2>
+        <form id="feedbackForm" method="POST" action="https://script.google.com/macros/s/AKfycbxFQYNTljAWe8wIXY5j6bMrYDGKpACkZxEJP_UcXhc79luWqeamDO_XkjVziHldjbafkQ/exec">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="userName" required>
+            </div>
+            <div class="form-group">
+                <label for="feedback">Your Feedback:</label>
+                <textarea id="feedback" name="userFeedback" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit Feedback">
+            </div>
+            <div id="responseMessage" class="response-message"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission and page reload
+
+            const form = e.target;
+            const formData = new FormData(form);
+            const responseDiv = document.getElementById('responseMessage');
+            responseDiv.textContent = 'Submitting...'; // Show submitting status
+            responseDiv.className = 'response-message'; // Reset class for styling
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                responseDiv.textContent = data; // Display the message from Apps Script
+                if (data.includes("successfully")) { // Check if the message indicates success
+                    responseDiv.classList.add('success');
+                    form.reset(); // Clear the form only on success
+                } else {
+                    responseDiv.classList.add('error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                responseDiv.textContent = 'An error occurred. Please try again.';
+                responseDiv.classList.add('error');
+            });
+        });
+    </script>
+</body>
+</html>
