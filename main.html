@@ -1,198 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  integrity="sha512-pap0k6gKznCq5ZxzZWZ39D+7HuNQaE+KP3zM8IsbAYqTQlQJzDDDRRU8x0U3pJYZFwVXOCu5+0G9sPsySg+zIA=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Main Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <style>
-        /* Base styles for body - apply your original background here */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Your original background */
-            background-image: linear-gradient(rgba(255,249,230,0.95), rgba(255,249,230,0.95)), url('assets/img/portfolio/bg.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-image: linear-gradient(rgba(255,249,230,0.95), rgba(255,249,230,0.95)), url('assets/img/portfolio/bg.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
 
-        /* NEW CSS for the full-screen introductory image container */
-        #introImageContainer {
-            position: fixed; /* Fixed position to cover the viewport */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex; /* Use flexbox to center the image */
-            align-items: center;
-            justify-content: center;
-            z-index: 1000; /* Ensure it's on top of everything */
-            background-color: white; /* Solid white background for the splash screen */
-            transition: opacity 0.5s ease-out; /* Smooth fade-out */
-        }
+    #introImageContainer {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      background-color: white;
+      transition: opacity 0.5s ease-out;
+    }
 
-        #introImage {
-            max-width: 100%; /* Ensure image doesn't overflow container */
-            max-height: 100%;
-            object-fit: contain; /* 'contain' fits the image within the container without cropping */
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
+    #introImage {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
 
-        /* Styles for your existing content */
-        h1 {
-            margin-top: 20px;
-            color: #7b1fa2;
-            font-size: 2.5em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
+    h1 {
+      margin-top: 20px;
+      color: #7b1fa2;
+      font-size: 2.5em;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
 
-        /* Style for the 'Thought for the day' link */
-        .thought-link {
-            font-style: italic;
-            color: #555;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-        .thought-link a {
-            color: #7b1fa2; /* Make the link text visible and distinct */
-            text-decoration: underline; /* Standard link underline */
-            font-weight: bold; /* Make it stand out */
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .thought-link a:hover {
-            color: #4e342e; /* Change color on hover */
-        }
+    .thought-link {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+    .thought-link a {
+      color: #7b1fa2;
+      text-decoration: underline;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .thought-link a:hover {
+      color: #4e342e;
+    }
 
-        .wing-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 40px;
-            width: 100%;
-            max-width: 800px;
-        }
-        .wing {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            font-size: 18px;
-            font-weight: bold;
-            color: #4e342e;
-            transition: 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .wing:hover {
-            background-color: #f3e5f5;
-            transform: translateY(-5px);
-        }
-        .social-icons {
-            margin-top: 40px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .social-icons a {
-            color: #7b1fa2;
-            text-decoration: none;
-            background-color: rgba(255,255,255,0.9);
-            padding: 10px 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .social-icons a:hover {
-            background-color: #e1bee7;
-        }
+    .wing-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 800px;
+    }
+    .wing {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-size: 18px;
+      font-weight: bold;
+      color: #4e342e;
+      transition: 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .wing:hover {
+      background-color: #f3e5f5;
+      transform: translateY(-5px);
+    }
 
-        /* Utility classes */
-        .hidden {
-            display: none !important;
-        }
-        .fade-out {
-            opacity: 0;
-        }
-    </style>
+    .social-icons {
+      margin-top: 40px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .social-icons a {
+      color: #7b1fa2;
+      text-decoration: none;
+      background-color: rgba(255,255,255,0.9);
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .social-icons a:hover {
+      background-color: #e1bee7;
+    }
+
+    .feedback-container {
+      background-color: #fff;
+      padding: 32px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      max-width: 420px;
+      width: 100%;
+      margin: 60px auto;
+    }
+    .feedback-container h2 {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      color: #222;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group label {
+      font-size: 14px;
+      color: #555;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .form-group input[type="text"],
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      background-color: #fff;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-group input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    .form-group input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .response-message {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .response-message.success {
+      color: green;
+    }
+    .response-message.error {
+      color: red;
+    }
+
+    .hidden { display: none !important; }
+    .fade-out { opacity: 0; }
+  </style>
 </head>
 <body>
 
-    <div id="introImageContainer">
-        <img id="introImage" src="assets/img/portfolio/Slide 6.jpg" alt="Welcome Image">
-    </div>
+  <div id="introImageContainer">
+    <img id="introImage" src="assets/img/portfolio/Slide 6.jpg" alt="Welcome Image">
+  </div>
 
-    <h1>Welcome to Sai Youth Narayangarh</h1>
-    <div class="thought-link">
-        <a href="ThoughtForTheDay.html">Thought for the day</a>
-    </div>
-    <div class="wing-container">
-        <a class="wing" href="education.html">Education</a>
-        <a class="wing" href="ladies.html">Ladies</a>
-        <a class="wing" href="medical.html">Medical</a>
-        <a class="wing" href="Youth-activities/list.html">Youth</a>
-    </div>
-    <div class="social-icons">
-        <a href="https://www.instagram.com/sai_youth_narayangarh/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://www.facebook.com/ssscnarayangarh" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-        <a href="https://www.youtube.com/@SaiyouthNarayangarh" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.instagram.com/direct/inbox/?thread_key=9468281653191986" target="_blank"><i class="fab fa-instagram"></i> IG Channel</a>
-        <a href="https://www.facebook.com/groups/saiyouthnarayangarh" target="_blank"><i class="fab fa-facebook"></i> FB Group</a>
-    </div>
+  <h1>Welcome to Sai Youth Narayangarh</h1>
+  <div class="thought-link">
+    <a href="ThoughtForTheDay.html">Thought for the day</a>
+  </div>
 
-    <script>
-        const introImageContainer = document.getElementById('introImageContainer'); //
+  <div class="wing-container">
+    <a class="wing" href="education.html">Education</a>
+    <a class="wing" href="ladies.html">Ladies</a>
+    <a class="wing" href="medical.html">Medical</a>
+    <a class="wing" href="Youth-activities/youth.html">Youth</a>
+  </div>
 
-        // Immediately hide all body content that is not the intro image container
-        const bodyChildren = document.body.children; //
-        for (let i = 0; i < bodyChildren.length; i++) { //
-            if (bodyChildren[i].id !== 'introImageContainer') { //
-                bodyChildren[i].style.visibility = 'hidden'; //
-                bodyChildren[i].style.opacity = '0'; // For smooth fade in later
-                bodyChildren[i].style.transition = 'opacity 1s ease-in'; //
-            }
+  <div class="social-icons">
+    <a href="https://www.instagram.com/sai_youth_narayangarh/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.facebook.com/ssscnarayangarh" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+    <a href="https://www.youtube.com/@SaiyouthNarayangarh" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+    <a href="https://www.instagram.com/direct/inbox/?thread_key=9468281653191986" target="_blank"><i class="fab fa-instagram"></i> IG Channel</a>
+    <a href="https://www.facebook.com/groups/saiyouthnarayangarh" target="_blank"><i class="fab fa-facebook"></i> FB Group</a>
+  </div>
+
+  <div class="feedback-container">
+    <h2>Share Your Feedback</h2>
+    <form id="feedbackForm" method="POST" action="https://script.google.com/macros/s/AKfycbxFQYNTljAWe8wIXY5j6bMrYDGKpACkZxEJP_UcXhc79luWqeamDO_XkjVziHldjbafkQ/exec">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="userName" required />
+      </div>
+      <div class="form-group">
+        <label for="feedback">Your Feedback</label>
+        <textarea id="feedback" name="userFeedback" required></textarea>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit Feedback" />
+      </div>
+      <div id="responseMessage" class="response-message"></div>
+    </form>
+  </div>
+
+  <script>
+    // Splash screen fade-out
+    const introImageContainer = document.getElementById('introImageContainer');
+    const bodyChildren = document.body.children;
+    for (let i = 0; i < bodyChildren.length; i++) {
+      if (bodyChildren[i].id !== 'introImageContainer') {
+        bodyChildren[i].style.visibility = 'hidden';
+        bodyChildren[i].style.opacity = '0';
+        bodyChildren[i].style.transition = 'opacity 1s ease-in';
+      }
+    }
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      introImageContainer.classList.add('fade-out');
+      introImageContainer.addEventListener('transitionend', () => {
+        introImageContainer.classList.add('hidden');
+        for (let i = 0; i < bodyChildren.length; i++) {
+          if (bodyChildren[i].id !== 'introImageContainer') {
+            bodyChildren[i].style.visibility = 'visible';
+            bodyChildren[i].style.opacity = '1';
+          }
         }
+        document.body.style.overflow = '';
+      }, { once: true });
+    }, 5000);
 
-        // Hide scrollbar during intro
-        document.body.style.overflow = 'hidden'; //
+    // Feedback form submission
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const responseDiv = document.getElementById('responseMessage');
+      responseDiv.textContent = 'Submitting...';
+      responseDiv.className = 'response-message';
 
-        // Set timeout to start fading out the intro image container
-        setTimeout(() => { //
-            introImageContainer.classList.add('fade-out'); // Start fade out
-
-            // Listen for the end of the fade-out transition
-            introImageContainer.addEventListener('transitionend', () => { //
-                introImageContainer.classList.add('hidden'); // Completely hide the splash container
-
-                // Reveal main content
-                for (let i = 0; i < bodyChildren.length; i++) { //
-                    if (bodyChildren[i].id !== 'introImageContainer') { //
-                        bodyChildren[i].style.visibility = 'visible'; //
-                        bodyChildren[i].style.opacity = '1'; // Fade in
-                    }
-                }
-                document.body.style.overflow = ''; // Restore scrollbar
-            }, { once: true }); // Ensure this listener runs only once
-        }, 5000); // 5000 milliseconds = 5 seconds
-    </script>
+      fetch(form.action, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.text();
+      })
+      .then(data => {
+        responseDiv.textContent = data;
+        if (data.includes("successfully")) {
+          responseDiv.classList.add('success');
+          form.reset();
+        } else {
+          responseDiv.classList.add('error');
+        }
+      })
+      .catch(error => {
+        responseDiv.textContent = 'An error occurred. Please try again.';
+        responseDiv.classList.add('error');
+      });
+    });
+  </script>
 </body>
 </html>
